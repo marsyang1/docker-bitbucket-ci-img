@@ -9,7 +9,9 @@ RUN apk update \
         curl \
         git \
         unzip \
-        openjdk8
+        openjdk8 \
+        # for base64
+        coreutils
 
 # Create dirs and users
 RUN mkdir -p /opt/atlassian/bitbucketci/agent/build
