@@ -1,9 +1,7 @@
 # COPY FROM mhart/alpine-node:10
 # FROM mhart/alpine-node:10
-FROM alpine:3.9
+FROM alpine:3.10
 MAINTAINER MarsYang
-# Reference to altassian/default-image:2 , but use alpine
-
 # ENV VERSION=v6.17.1 NPM_VERSION=3
 # ENV VERSION=v8.16.1 NPM_VERSION=6 YARN_VERSION=latest
 ENV VERSION=v10.16.3 NPM_VERSION=6 YARN_VERSION=latest
@@ -62,6 +60,8 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers binutils-gold gnup
   
 ## END OF COPY  
 
+# Reference to altassian/default-image:2 , but use alpine
+
 ARG CLOUD_SDK_VERSION=256.0.0
 # change back apk repo to default repo
 RUN export APK_VER=$(cat /etc/alpine-release | cut -d "." -f 1,2) \
@@ -74,6 +74,7 @@ RUN apk update \
         git \
         unzip \
         openjdk8 \
+        gradle \
         # for base64
         coreutils    
 
@@ -87,13 +88,11 @@ ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN apk add \
-        curl \
         python \
         py-crcmod \
         bash \
         libc6-compat \
         openssh-client \
-        git \
         gnupg
 
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
