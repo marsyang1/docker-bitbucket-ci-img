@@ -10,9 +10,11 @@ RUN apk update \
         git \
         unzip \
         openjdk8 \
-        gradle \
         # for base64
         coreutils
+        
+# split gradle to second time add        
+RUN apk update && apk add gradle        
 
 # Create dirs and users
 RUN mkdir -p /opt/atlassian/bitbucketci/agent/build
