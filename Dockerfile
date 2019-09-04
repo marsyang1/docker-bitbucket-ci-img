@@ -10,6 +10,7 @@ RUN apk update \
         git \
         unzip \
         openjdk8 \
+        gradle \
         # for base64
         coreutils
 
