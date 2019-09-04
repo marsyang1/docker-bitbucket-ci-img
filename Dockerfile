@@ -3,6 +3,10 @@ MAINTAINER MarsYang
 # Reference to altassian/default-image:2 , but use alpine
 
 ARG CLOUD_SDK_VERSION=256.0.0
+# change back apk repo to default repo
+RUN export APK_VER=$(cat /etc/alpine-release | cut -d "." -f 1,2) \
+    &&  echo "http://dl-cdn.alpinelinux.org/alpine/v$APK_VER/main" >> /etc/apk/repositories \
+    &&  echo "http://dl-cdn.alpinelinux.org/alpine/v$APK_VER/community" >> /etc/apk/repositories
 
 RUN apk update \
     && apk add wget \
