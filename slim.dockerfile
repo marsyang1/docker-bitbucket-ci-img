@@ -1,4 +1,4 @@
-FROM bitbucket-pip-alpine:latest
+FROM marsyang1/bitbucket-pip-alpine:latest
 FROM alpine:3.10
 
 COPY --from=0 /usr/bin/node /usr/bin/
